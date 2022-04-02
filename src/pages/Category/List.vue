@@ -82,8 +82,9 @@ export default defineComponent({
     const { list, remove } = useApi();
     const { notifyError, notifySuccess } = useNotify();
     const $q = useQuasar();
-    const table = "category";
+    const table = "magasin_type_tab";
     const handleListCategories = async () => {
+      console.log("je suis laà");
       try {
         loading.value = true;
         categories.value = await list(table);

@@ -76,6 +76,7 @@ export default defineComponent({
     };
 
     const handleGetCategory = async (id) => {
+      console.log("je suis ici");
       try {
         category = await getById(table, id);
         form.value = category;
