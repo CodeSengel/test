@@ -8,6 +8,11 @@ const routes = [
         name: "me",
         component: () => import("pages/Me.vue"),
       },
+      {
+        path: "",
+        name: "accueil",
+        component: () => import("pages/Souk/Magasin_type.vue"),
+      },
 
       {
         path: "dashboard",
