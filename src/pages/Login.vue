@@ -102,7 +102,7 @@ export default defineComponent({
       } else {
         try {
           await login(form.value);
-          router.push({ name: "me" });
+          router.push({ name: "magasin_type" });
           notifySuccess("welcome");
         } catch (error) {
           notifyError(error.message);
