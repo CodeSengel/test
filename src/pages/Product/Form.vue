@@ -147,7 +147,8 @@ export default defineComponent({
     });
 
     const handleListCategories = async () => {
-      optionsCategory.value = await list("category");
+      optionsCategory.value = await list("magasin_type_tab");
+      console.log("voici les catégories ", optionsCategory);
     };
     const handleListMagasins = async () => {
       optionsMagasin.value = await getByColKeyAndKeyWord(
