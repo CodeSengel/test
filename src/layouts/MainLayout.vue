@@ -33,8 +33,8 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list v-if="user">
         <div class="relative q-px-xl q-pt-xl">
-          <q-avatar size="200px">
-            <img src="~assets/profileMorty.jpg" />
+          <q-avatar square size="200px">
+            <img src="~assets/appIcon.png" />
           </q-avatar>
         </div>
         <div>
