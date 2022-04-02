@@ -42,7 +42,7 @@ import useNotify from "src/composables/UseNotify";
 export default defineComponent({
   name: "PageFormCategory",
   setup() {
-    const table = "category";
+    const table = "magasin_type_tab";
     const router = useRouter();
     const route = useRoute();
     const { post, getById, update } = useApi();
@@ -76,7 +76,6 @@ export default defineComponent({
     };
 
     const handleGetCategory = async (id) => {
-      console.log("je suis ici");
       try {
         category = await getById(table, id);
         form.value = category;
