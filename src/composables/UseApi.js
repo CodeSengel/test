@@ -126,6 +126,13 @@ export default function useApi() {
     });
     return data;
   };
+  const listmagasinwithname = async () => {
+    const { data, error } = await supabase.rpc(
+      "list_magasin_tab_with_name",
+      {}
+    );
+    return data;
+  };
 
   const list_with_liked = async (x) => {
     const { data, error } = await supabase.rpc("list_final", {
@@ -227,5 +234,6 @@ export default function useApi() {
     removelikes,
     list_with_liked_filtered,
     removemagasin,
+    listmagasinwithname,
   };
 }

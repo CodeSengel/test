@@ -87,11 +87,13 @@
 import { defineComponent, onMounted, computed, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import useApi from "src/composables/UseApi";
+import useAuthUser from "src/composables/UseAuthUser";
 import useNotify from "src/composables/UseNotify";
 
 export default defineComponent({
   name: "PageFormCategory",
   setup() {
+    const { user } = useAuthUser();
     const table = "magasins_tab";
     const router = useRouter();
     const route = useRoute();
@@ -112,6 +114,8 @@ export default defineComponent({
       zone: "",
       genre: "",
       type_id: ref(),
+      owner: "",
+      email: "",
     });
     const img = ref([]);
     onMounted(() => {
@@ -135,6 +139,9 @@ export default defineComponent({
 
     const handleSubmit = async () => {
       try {
+        form.value.email = user.value.email;
+        form.value.owner = user.value.user_metadata.name;
+
         if (img.value.length > 0) {
           const imgUrl = await uploadImg(img.value[0], "products");
           form.value.img_url = imgUrl;

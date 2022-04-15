@@ -20,24 +20,29 @@
         :filter="filter"
       >
         <template v-slot:top>
-          <q-btn @click="gotomagasin()">
-            voir tous les produits
-            <q-icon name="mdi-arrow-right" size="lg" color="red" />
-          </q-btn>
           <div></div>
           <q-space />
-          <q-input
-            outlined
-            dense
-            v-model="filter"
-            debounce="1000"
-            placeholder="search"
-            class="q-mr-sm"
-          >
-            <template v-slot:append>
-              <q-icon name="mdi-magnify" />
-            </template>
-          </q-input>
+          <div class="row">
+            <div class="col">
+              <q-input
+                outlined
+                dense
+                v-model="filter"
+                debounce="1000"
+                placeholder="search"
+                class="q-mr-sm"
+              >
+                <template v-slot:append>
+                  <q-icon name="mdi-magnify" />
+                </template>
+              </q-input>
+            </div>
+
+            <q-btn @click="gotomagasin()" class="bg-primary">
+              voir tous les produits
+              <q-icon name="mdi-arrow-right-bold"></q-icon>
+            </q-btn>
+          </div>
         </template>
 
         <template v-slot:item="props">
@@ -50,10 +55,28 @@
                   debounce="5000"
                   @click="gotoproducts(props.row)"
                 >
-                  <figcaption style="background: rgba(158, 43, 43, 0.8)">
+                  <figcaption
+                    style="
+                      text-align: center;
+                      background: rgba(106, 27, 154, 0.8);
+                    "
+                  >
                     <strong> {{ props.row.name }} </strong>
                   </figcaption>
                 </q-img>
+                <figcaption
+                  style="text-align: center; background: rgba(109, 7, 26, 1)"
+                >
+                  <div class="row">
+                    <div class="col-offset-4/3">
+                      <q-icon name="mdi-map-marker" size="xs" />
+                    </div>
+                    <div class="col-offset-4/3">
+                      <strong> {{ props.row.zone }} </strong>
+                    </div>
+                    <div class="col">Créé par : {{ props.row.owner }}</div>
+                  </div>
+                </figcaption>
               </div>
             </q-card>
           </div>
@@ -69,6 +92,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import useApi from "src/composables/UseApi";
 import { useQuasar } from "quasar";
 import { useRouter, useRoute } from "vue-router";
+import useAuthUser from "src/composables/UseAuthUser";
 
 export default defineComponent({
   name: "PageProductList",

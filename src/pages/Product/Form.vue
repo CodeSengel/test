@@ -118,8 +118,15 @@ export default defineComponent({
     const table2 = "magasins_tab";
     const router = useRouter();
     const route = useRoute();
-    const { post, getById, update, list, uploadImg, getByColKeyAndKeyWord } =
-      useApi();
+    const {
+      post,
+      getById,
+      update,
+      list,
+      uploadImg,
+      getByColKeyAndKeyWord,
+      listPriveProdAvecMagasin,
+    } = useApi();
     const { notifyError, notifySuccess } = useNotify();
 
     const isUpdate = computed(() => route.params.id);
@@ -148,7 +155,6 @@ export default defineComponent({
 
     const handleListCategories = async () => {
       optionsCategory.value = await list("magasin_type_tab");
-      console.log("voici les catégories ", optionsCategory);
     };
     const handleListMagasins = async () => {
       optionsMagasin.value = await getByColKeyAndKeyWord(
@@ -156,8 +162,6 @@ export default defineComponent({
         "user_id",
         user.value.id
       );
-
-      console.log("Voilà", optionsMagasin.value);
     };
 
     const handleSubmit = async () => {

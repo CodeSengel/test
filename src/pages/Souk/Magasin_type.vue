@@ -19,24 +19,28 @@
         :rows-per-page-options="[0]"
       >
         <template v-slot:top>
-          <q-btn to="magasin">
-            Vers tous les magasins
-            <q-icon name="mdi-arrow-right" size="lg" color="red" />
-          </q-btn>
-
           <q-space />
-          <q-input
-            outlined
-            dense
-            v-model="filter"
-            debounce="1000"
-            placeholder="search"
-            class="q-mr-sm"
-          >
-            <template v-slot:append>
-              <q-icon name="mdi-magnify" />
-            </template>
-          </q-input>
+          <div class="row">
+            <div class="col">
+              <q-input
+                outlined
+                dense
+                v-model="filter"
+                debounce="1000"
+                placeholder="search"
+                class="q-mr-sm"
+              >
+                <template v-slot:append>
+                  <q-icon name="mdi-magnify" />
+                </template>
+              </q-input>
+            </div>
+
+            <q-btn to="magasin" class="bg-primary">
+              Vers tous les magasins
+              <q-icon name="mdi-arrow-right-bold"></q-icon>
+            </q-btn>
+          </div>
         </template>
 
         <template v-slot:item="props">
@@ -48,7 +52,7 @@
                   :ratio="10 / 5"
                   @click="gotomagasin(props.row)"
                 >
-                  <figcaption style="background: rgba(158, 43, 43, 0.8)">
+                  <figcaption style="background: rgba(106, 27, 154, 0.8)">
                     <strong> {{ props.row.name }} </strong>
                     {{ nombreMagasins }} magasins
                   </figcaption>

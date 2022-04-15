@@ -17,7 +17,7 @@
               class="text-h5 q-my-none"
               style="position: relative; width: 60%"
             >
-              SOUK
+              SOUKiw
             </div>
           </div>
         </q-toolbar-title>
@@ -50,6 +50,10 @@
         </div>
 
         <div>
+          <div v-if="userCheck">
+            <Dash v-for="to in dash" :key="to.title" v-bind="to" />
+          </div>
+
           <EssentialLink
             v-for="to in essentialLinks"
             :key="to.title"
@@ -75,17 +79,28 @@
 <script>
 import EssentialLink from "components/EssentialLink.vue";
 import LinkLogout from "components/LinkLogout.vue";
-import { defineComponent, ref } from "vue";
+import Dash from "components/Dash.vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { date } from "quasar";
 import useAuthUser from "src/composables/UseAuthUser";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
+import useApi from "src/composables/UseApi";
 
 const linkout = [
   {
     title: "Logout",
     caption: "Logout your account",
     icon: "fas fa-sign-out-alt",
+  },
+];
+
+const dash = [
+  {
+    title: "Dash",
+    caption: "Dash for admin",
+    icon: "fas fa-sign-out-alt",
+    to: "/dashboard",
   },
 ];
 
@@ -97,12 +112,7 @@ const linksList = [
 
     to: "/me",
   },
-  {
-    title: "Dashboard",
-    caption: "See all your schedules",
-    icon: "far fa-calendar-alt",
-    to: "/dashboard",
-  },
+
   {
     title: "Mes magasins",
     caption: "Voir tous mes magasins",
@@ -140,14 +150,29 @@ export default defineComponent({
   components: {
     EssentialLink,
     LinkLogout,
+    Dash,
   },
 
   setup() {
+    const { getByColKeyAndKeyWord, list } = useApi();
+    const tempo = ref();
     const { user } = useAuthUser();
+    const userCheck = ref(false);
     const $q = useQuasar();
     const router = useRouter();
     const { logout } = useAuthUser();
     const leftDrawerOpen = ref(false);
+
+    const checkUserFunc = async () => {
+      //tempo.value = await list("product_tab");
+      tempo.value = await getByColKeyAndKeyWord("user_role", "amount", "2");
+    };
+
+    onMounted(() => {
+      checkUserFunc();
+      console.log("Voici le user", tempo);
+    });
+
     const handleLogout = async () => {
       $q.dialog({
         title: "Logout",
@@ -165,8 +190,11 @@ export default defineComponent({
       user,
       essentialLinks: linksList,
       linkout: linkout,
+      dash: dash,
+      userCheck,
 
       leftDrawerOpen,
+      tempo,
 
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;

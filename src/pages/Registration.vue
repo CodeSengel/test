@@ -64,7 +64,7 @@
                 square
                 filled
                 clearable
-                v-model="form.password2"
+                v-model="password2"
                 type="password"
                 label="confirm password"
                 autocomplete="off"
@@ -113,6 +113,7 @@ export default defineComponent({
   name: "Login",
   setup() {
     const router = useRouter();
+    const password2 = ref();
     const { register } = useAuthUser();
 
     const { notifySuccess, notifyError } = UseNotify();
@@ -122,11 +123,12 @@ export default defineComponent({
       email: "",
       role: "",
       password: "",
-      password2: "",
     });
 
     const handleRegister = async () => {
-      if (form.value.password == form.value.password2) {
+      console.log("1st mdp ", form.value.password);
+      console.log("2nd mdp ", password2);
+      if (form.value.password == password2.value) {
         try {
           await register(form.value);
 
@@ -145,6 +147,7 @@ export default defineComponent({
     return {
       form,
       handleRegister,
+      password2,
     };
   },
 

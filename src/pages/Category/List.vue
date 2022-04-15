@@ -72,10 +72,12 @@ const pagination = 9;
 import useApi from "src/composables/UseApi";
 import useNotify from "src/composables/UseNotify";
 import { useRouter } from "vue-router";
+import useAuthUser from "src/composables/UseAuthUser";
 import { QToolbarTitle, Dialog, useQuasar } from "quasar";
 export default defineComponent({
   name: "PageCategoryList",
   setup() {
+    const { user } = useAuthUser();
     const categories = ref([]);
     const loading = ref(true);
     const router = useRouter();
@@ -83,8 +85,8 @@ export default defineComponent({
     const { notifyError, notifySuccess } = useNotify();
     const $q = useQuasar();
     const table = "magasin_type_tab";
+    const checkUser = ref(false);
     const handleListCategories = async () => {
-      console.log("je suis laà");
       try {
         loading.value = true;
         categories.value = await list(table);
@@ -112,6 +114,7 @@ export default defineComponent({
       }
     };
     onMounted(() => {
+      console.log("voici le check", checkUser.value);
       handleListCategories();
     });
     return {
