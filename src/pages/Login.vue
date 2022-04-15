@@ -102,14 +102,16 @@ export default defineComponent({
 
     onMounted(() => {
       if (isLoggedIn) {
-        router.push({ name: "me" });
+        router.push({ name: "magasin_type" });
+      } else {
+        router.push({ name: "magasin_type" });
       }
     });
 
     const facebookLogin = async () => {
       try {
         await loginWithFacebook();
-        router.push({ name: "magasin_type" });
+        await router.push({ name: "magasin_type" });
         notifySuccess("welcome");
       } catch (error) {
         notifyError(error.message);
