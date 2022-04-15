@@ -107,7 +107,13 @@ export default defineComponent({
     });
 
     const facebookLogin = async () => {
-      loginWithFacebook();
+      try {
+        await loginWithFacebook();
+        router.push({ name: "magasin_type" });
+        notifySuccess("welcome");
+      } catch (error) {
+        notifyError(error.message);
+      }
     };
 
     const handleLogin = async () => {
