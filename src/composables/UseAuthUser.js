@@ -1,83 +1,86 @@
-import { ref } from 'vue'
-import useSupabase from 'boot/supabase'
-import {useQuasar } from 'quasar'
+import { ref } from "vue";
+import useSupabase from "boot/supabase";
+import { useQuasar } from "quasar";
 
-
-const user = ref(null)
+const user = ref(null);
 
 export default function useAuthUser() {
-    const $q = useQuasar()
+  const $q = useQuasar();
 
-    const {supabase} = useSupabase()
+  const { supabase } = useSupabase();
 
-    const login = async ({email , password}) => {
-        const {user, error} = await supabase.auth.signIn({email, password})
-        if(error) throw error
-        return user
-    }
+  const login = async ({ email, password }) => {
+    const { user, error } = await supabase.auth.signIn({ email, password });
+    if (error) throw error;
+    return user;
+  };
 
-    const loginWithSocialProvider = async (provider) =>{ 
-        const {user, error} = await supabase.auth.signIn({provider})
-        if(error) throw error
-        return user
-    }
+  const loginWithSocialProvider = async (provider) => {
+    const { user, error } = await supabase.auth.signIn({ provider });
+    if (error) throw error;
+    return user;
+  };
 
-    const logout = async () => {
-        const { error } = await supabase.auth.signOut()
-        if (error) throw error
-    }
+  const loginWithFacebook = async () => {
+    const { user, error } = await supabase.auth.signIn({
+      provider: "facebook",
+    });
+    if (error) throw error;
+    return user;
+  };
 
-    const isLoggedIn = () => {
-        return !!user.value
-    }
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  };
 
-    const register = async({ email, password, ...meta}) => {
+  const isLoggedIn = () => {
+    return !!user.value;
+  };
 
-        const {user,error} = await supabase.auth.signUp(
-            
-            { email, password},
-            { 
-                data: meta,
-                redirectTo: '${window.location.origin}/me?fromEmail=registrationConfirmation'
-            }
-        
-        )
-        if(error) throw error
-        return user
-    }
-    const update = async (data) => {
-        const { user, error} = await supabase.auth.update(data)
-        if(error) throw error
-        return user
-    }
-    const sendPasswordRestEmail = async (email) => {
-        const { user, error} = await supabase.auth.api.resetPasswordForEmail(email)
-        if(error) throw error
-        return user
-    }
-    
- 
-    const resetPassword = async (accessToken, newPassword) => {
-        const { user, error } = await supabase.auth.api.updateUser(
-            accessToken,
-            {password: newPassword}
-        )
-        if (error) throw error
-        return user
-    }
-    
-   
+  const register = async ({ email, password, ...meta }) => {
+    const { user, error } = await supabase.auth.signUp(
+      { email, password },
+      {
+        data: meta,
+        redirectTo:
+          "${window.location.origin}/me?fromEmail=registrationConfirmation",
+      }
+    );
+    if (error) throw error;
+    return user;
+  };
+  const update = async (data) => {
+    const { user, error } = await supabase.auth.update(data);
+    if (error) throw error;
+    return user;
+  };
+  const sendPasswordRestEmail = async (email) => {
+    const { user, error } = await supabase.auth.api.resetPasswordForEmail(
+      email
+    );
+    if (error) throw error;
+    return user;
+  };
 
-    return {
-        user,
-        login, 
-        loginWithSocialProvider,
-        logout,
-        isLoggedIn,
-        register,
-        update,
-        sendPasswordRestEmail,
-        resetPassword,
-        
-    }
+  const resetPassword = async (accessToken, newPassword) => {
+    const { user, error } = await supabase.auth.api.updateUser(accessToken, {
+      password: newPassword,
+    });
+    if (error) throw error;
+    return user;
+  };
+
+  return {
+    user,
+    login,
+    loginWithSocialProvider,
+    logout,
+    isLoggedIn,
+    register,
+    update,
+    sendPasswordRestEmail,
+    resetPassword,
+    loginWithFacebook,
+  };
 }

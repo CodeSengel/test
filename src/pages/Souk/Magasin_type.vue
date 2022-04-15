@@ -36,7 +36,7 @@
               </q-input>
             </div>
 
-            <q-btn to="magasin" class="bg-primary">
+            <q-btn to="magasin" class="bg-primary shadow-1">
               Vers tous les magasins
               <q-icon name="mdi-arrow-right-bold"></q-icon>
             </q-btn>

@@ -1,9 +1,7 @@
 <template>
   <div class="row justify-center full-height full-width text-center">
     <div class="column">
-      <div class="row">
-        <h5 class="text-h5 text-white q-my-md text-center">OneGantt</h5>
-      </div>
+      <div class="row"></div>
       <div class="row">
         <q-card bordered class="q-pa-lg shadow-1">
           <q-card-section>
@@ -56,13 +54,25 @@
             </q-form>
           </q-card-section>
 
-          <p class="q-pt-lg text-grey-6">you don't have an account ?</p>
+          <p class="q-pt-lg text-grey-6">Vous avez pas un compte?</p>
           <q-btn
             size="sm"
             bordered
             class="shadow-1"
             label="Create an account"
             to="/registration"
+          >
+          </q-btn>
+
+          <p class="q-pt-lg text-grey-6">
+            Connectez-vous avec votre compte facebook
+          </p>
+          <q-btn
+            size="sm"
+            bordered
+            class="bg-blue shadow-1"
+            label="facebook"
+            @click="facebookLogin()"
           >
           </q-btn>
         </q-card>
@@ -83,7 +93,7 @@ export default defineComponent({
   setup() {
     const { notifyError, notifySuccess } = useNotify();
     const router = useRouter();
-    const { login, isLoggedIn } = useAuthUser();
+    const { login, isLoggedIn, loginWithFacebook } = useAuthUser();
 
     const form = ref({
       email: "",
@@ -95,6 +105,10 @@ export default defineComponent({
         router.push({ name: "me" });
       }
     });
+
+    const facebookLogin = async () => {
+      loginWithFacebook();
+    };
 
     const handleLogin = async () => {
       if (form.value.password == null || form.value.email == null) {
@@ -112,6 +126,7 @@ export default defineComponent({
     return {
       form,
       handleLogin,
+      facebookLogin,
     };
   },
 

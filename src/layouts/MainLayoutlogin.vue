@@ -4,7 +4,7 @@
       <q-toolbar>
         <div style="width: 100%">
           <div class="text-h5 q-my-none" style="position: relative; width: 60%">
-            SOUK
+            SOUKiw
           </div>
         </div>
       </q-toolbar>
