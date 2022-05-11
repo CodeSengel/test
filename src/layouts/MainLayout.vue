@@ -107,7 +107,7 @@ const linkout = [
 const dash = [
   {
     title: "Mes produits",
-    caption: "Dash for admin",
+    caption: "Voir tous nos produits",
     icon: "fas fa-sign-out-alt",
     to: "/product",
   },

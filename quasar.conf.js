@@ -144,9 +144,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `OneGantt`,
-        short_name: `OneGantt`,
-        description: `gantt app`,
+        name: `Soukiw`,
+        short_name: `Soukiw`,
+        description: `Soukiw`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",

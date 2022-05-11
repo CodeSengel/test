@@ -1,8 +1,8 @@
 {
-  "name": "gantt_app",
+  "name": "soukiw",
   "version": "0.0.1",
   "description": "gantt app",
-  "productName": "OneGantt",
+  "productName": "Soukiw",
   "author": "code.sengel@gmail.com",
   "private": true,
   "scripts": {
