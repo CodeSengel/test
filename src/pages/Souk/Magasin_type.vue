@@ -54,7 +54,7 @@
                 >
                   <figcaption style="background: rgba(106, 27, 154, 0.8)">
                     <strong> {{ props.row.name }} </strong>
-                    {{ nombreMagasins }} magasins
+                    {{ nombreMagasins }}
                   </figcaption>
                 </q-img>
               </div>

@@ -138,11 +138,11 @@ const linksList = [
   //},
 
   //{
-  // title: "Souk",
+  //title: "Souk1",
   //caption: "Aller au souk",
-  // icon: "mdi-store",
+  //icon: "mdi-store",
 
-  //to: "/magasin_type",
+  // to: "/magasin_type",
   //},
   {
     title: "Souk",
