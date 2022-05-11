@@ -59,6 +59,15 @@
             :key="to.title"
             v-bind="to"
           />
+          <div
+            v-if="
+              user.id == '4f93a842-0e53-4e9d-a080-da56e3f0792b' ||
+              user.id == '77684a4c-26d2-4fcf-9d06-b1c1e49b186d' ||
+              user.id == '9a7226f3-2be6-40d2-8d1a-f609faa776c9'
+            "
+          >
+            <dash v-for="link in dash" :key="link.title" v-bind="link" />
+          </div>
 
           <LinkLogout
             v-for="link in linkout"
@@ -97,10 +106,10 @@ const linkout = [
 
 const dash = [
   {
-    title: "Dash",
+    title: "Mes produits",
     caption: "Dash for admin",
     icon: "fas fa-sign-out-alt",
-    to: "/dashboard",
+    to: "/product",
   },
 ];
 
@@ -113,27 +122,34 @@ const linksList = [
     to: "/me",
   },
 
-  {
-    title: "Mes magasins",
-    caption: "Voir tous mes magasins",
-    icon: "mdi-archive",
+  //{
+  //title: "Mes magasins",
+  // caption: "Voir tous mes magasins",
+  // icon: "mdi-archive",
 
-    to: "/mesmagasin",
-  },
-  {
-    title: "Mes produits",
-    caption: "Voir tous mes produits",
-    icon: "mdi-archive",
+  // to: "/mesmagasin",
+  //},
+  //{
+  // title: "Mes produits",
+  // caption: "Voir tous mes produits",
+  // icon: "mdi-archive",
 
-    to: "/product",
-  },
+  //to: "/product",
+  //},
 
+  //{
+  // title: "Souk",
+  //caption: "Aller au souk",
+  // icon: "mdi-store",
+
+  //to: "/magasin_type",
+  //},
   {
     title: "Souk",
     caption: "Aller au souk",
     icon: "mdi-store",
 
-    to: "/magasin_type",
+    to: "/magasin_type_2",
   },
 ];
 

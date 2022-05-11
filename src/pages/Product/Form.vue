@@ -81,7 +81,6 @@
           option-label="name"
           map-options
           emit-value
-          :rules="[(val) => !!val || 'Le magasin est obligatoire']"
         />
         <q-btn
           :label="isUpdate ? 'Update' : 'Save'"

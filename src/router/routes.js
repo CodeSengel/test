@@ -71,6 +71,11 @@ const routes = [
         name: "magasin_type",
         component: () => import("pages/Souk/Magasin_type.vue"),
       },
+      {
+        path: "magasin_type_2",
+        name: "magasin_type_2",
+        component: () => import("pages/Souk/Magasin_type_2.vue"),
+      },
     ],
     meta: {
       requiresAuth: true,

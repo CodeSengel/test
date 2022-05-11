@@ -15,6 +15,7 @@
         :loading="loading"
         rowsPerPage="10"
         :filter="filter"
+        :rows-per-page-options="[0]"
       >
         <template v-slot:top>
           <div outline style="color: goldenrod">
@@ -22,18 +23,28 @@
           </div>
 
           <q-space />
-          <q-input
-            outlined
-            dense
-            v-model="filter"
-            debounce="1000"
-            placeholder="search"
-            class="q-mr-sm"
-          >
-            <template v-slot:append>
-              <q-icon name="mdi-magnify" />
-            </template>
-          </q-input>
+
+          <div class="row">
+            <div class="col">
+              <q-input
+                outlined
+                dense
+                v-model="filter"
+                debounce="1000"
+                placeholder="search"
+                class="q-mr-sm"
+              >
+                <template v-slot:append>
+                  <q-icon name="mdi-magnify" />
+                </template>
+              </q-input>
+            </div>
+
+            <q-btn to="product-public" class="bg-primary shadow-1">
+              Vers tous les produits
+              <q-icon name="mdi-arrow-right-bold"></q-icon>
+            </q-btn>
+          </div>
         </template>
         <template v-slot:item="props">
           <div class="q-pa-xs col-xs-12 col-sm-6 col-md-4">
@@ -138,6 +149,7 @@ export default defineComponent({
       list_with_liked,
       removelikes,
       list_with_liked_filtered,
+      list_with_liked_filtered_2,
     } = useApi();
     const { notifyError, notifySuccess } = useNotify();
     const route = useRoute();
@@ -162,25 +174,22 @@ export default defineComponent({
       try {
         if (route.params.id) {
           loading.value = true;
-          products.value = await list_with_liked_filtered(
+          products.value = await list_with_liked_filtered_2(
             user.value.id,
             route.params.id
           );
 
-          magasin.value = await getByColKeyAndKeyWord(
-            table2,
-            "id",
-            route.params.id
-          );
+          //magasin.value = await getByColKeyAndKeyWord(
+          //table2,
+          //"id",
+          //route.params.id
+          //);
 
-          magasinName.value = magasin.value[0].name;
+          //magasinName.value = magasin.value[0].name;
           loading.value = false;
         } else {
           loading.value = true;
           const userId = user.value.id;
-          //uuidv4();
-          //userId.value = user.value.id;
-          //products.value = await listPublic(table);
 
           products.value = await list_with_liked(user.value.id);
 

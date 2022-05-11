@@ -153,6 +153,16 @@ export default function useApi() {
     return data;
   };
 
+  const list_with_liked_filtered_2 = async (x, y) => {
+    const { data, error } = await supabase.rpc("list_final_filtered_2", {
+      f_userid: x,
+      prod_id: y,
+    });
+
+    if (error) throw error;
+    return data;
+  };
+
   const sendlike = async (tabnameinput, tabnameinpout, id) => {
     const { data, error } = await supabase.rpc("sendlike", {
       tableinput: tabnameinput,
@@ -233,6 +243,7 @@ export default function useApi() {
     list_with_liked,
     removelikes,
     list_with_liked_filtered,
+    list_with_liked_filtered_2,
     removemagasin,
     listmagasinwithname,
   };
