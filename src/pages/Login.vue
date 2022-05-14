@@ -65,7 +65,7 @@
           </q-btn>
 
           <p class="q-pt-lg text-grey-6">
-            Connectez-vous avec votre compte facebook
+            Connectez-vous avec votre compte facebook ou insta
           </p>
           <q-btn
             size="sm"
@@ -102,16 +102,14 @@ export default defineComponent({
 
     onMounted(() => {
       if (isLoggedIn) {
-        router.push({ name: "magasin_type" });
-      } else {
-        router.push({ name: "magasin_type" });
+        router.push({ name: "magasin_type_2" });
       }
     });
 
     const facebookLogin = async () => {
       try {
         await loginWithFacebook();
-        await router.push({ name: "magasin_type" });
+        await router.push({ name: "magasin_type_2" });
         notifySuccess("welcome");
       } catch (error) {
         notifyError(error.message);
@@ -124,7 +122,7 @@ export default defineComponent({
       } else {
         try {
           await login(form.value);
-          router.push({ name: "magasin_type" });
+          router.push({ name: "magasin_type_2" });
           notifySuccess("welcome");
         } catch (error) {
           notifyError(error.message);
