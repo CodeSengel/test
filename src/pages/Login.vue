@@ -64,16 +64,7 @@
           >
           </q-btn>
 
-          <p class="q-pt-lg text-grey-6">
-            Connectez-vous avec votre compte facebook ou insta
-          </p>
-          <q-btn
-            size="sm"
-            bordered
-            class="bg-blue shadow-1"
-            label="facebook"
-            @click="facebookLogin()"
-          >
+
           </q-btn>
         </q-card>
       </div>
@@ -140,4 +131,16 @@ export default defineComponent({
     this.$q.dark.set(true);
   },
 });
+
+
+//<p class="q-pt-lg text-grey-6">
+           // Connectez-vous avec votre compte facebook ou insta
+          //</p>
+          //<q-btn
+           // size="sm"
+           // bordered
+           // class="bg-blue shadow-1"
+           // label="facebook"
+           // @click="facebookLogin()"
+         // >
 </script>
